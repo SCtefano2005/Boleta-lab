@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Factura</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'clientes/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"> 
+</head>
+<body>
+    <div class="invoice">
+        <header>
+            <h1>CONFECCIONES "SAN JORGE" S.A.C.</h1>
+            <p>Calle Real Nº 1045 - Huancayo</p>
+            <p>R.U.C.: 20248454753</p>
+            <p>FACTURA Nº {{ factura.id }}</p>
+        </header>
+
+        <section class="customer-info">
+            <p><strong>Señor(a):</strong> {{ factura.cliente.nombres }} {{ factura.cliente.apellidos }}</p>
+            <p><strong>R.U.C.:</strong> {{ factura.cliente.ruc }}</p>
+            <p><strong>Dirección:</strong> {{ factura.cliente.direccion }}</p>
+            <p><strong>Fecha:</strong> {{ factura.id }}</p> <!-- Aquí puedes poner la fecha de creación si está disponible -->
+        </section>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>CANTIDAD</th>
+                    <th>DESCRIPCIÓN</th>
+                    <th>PRECIO UNITARIO</th>
+                    <th>VALOR DE VENTA</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for detalle in detalles %}
+                <tr>
+                    <td>{{ detalle.cantidad }}</td>
+                    <td>{{ detalle.producto.nombre }}</td>
+                    <td>{{ detalle.precio_unitario }}</td>
+                    <td>{{ detalle.cantidad|floatformat:2 }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+
+        <section class="totals">
+            <p><strong>Sub Total:</strong> {{ factura.subtotal }}</p>
+            <p><strong>IGV 18%:</strong> {{ factura.igv }}</p>
+            <p><strong>Total S/:</strong> {{ factura.total }}</p>
+        </section>
+    
+        <footer>
+            <p>Confecciones "San Jorge" R.U.C. 2024845476</p>
+            <p>Serie 001 del 001001 al 1000</p>
+            <p>AUT. SUNAT 0123456789</p>
+        </footer> 
+     
+        <!-- Botones de Logout y Generar PDF -->
+        <div class="mt-4 text-center">
+            <!-- Botón Logout -->
+            <a href="{% url 'logout' %}" class="btn btn-danger me-2">Logout</a>
+
+            <!-- Botón Generar PDF -->
+            <a href="{% url 'factura_view' factura.id %}?pdf=true" class="btn btn-primary">Generar PDF</a>
+
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+

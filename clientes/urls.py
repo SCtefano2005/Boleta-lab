@@ -1,8 +1,7 @@
 from django.urls import path
-from .views import login, home, logout
+from .views import login, factura_view, logout
 
 urlpatterns = [
-    path('login/', login, name='login'),
-    path('logout/', logout, name='logout'),  # Ruta para el logout
-    path('home/', home, name="home" ),
+    path('logout/', logout, name='logout'),  
+    path('factura/<int:factura_id>/', factura_view, name='factura_view'),
 ]

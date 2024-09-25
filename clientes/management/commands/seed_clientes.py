@@ -1,5 +1,5 @@
 from django.core.management.base import BaseCommand
-from empresa.models import Cliente, Ciudad, Departamento, Provincia
+from clientes.models import Cliente, Ciudad, Departamento, Provincia
 
 class Command(BaseCommand):
     help = 'Crea clientes de prueba en la base de datos'
@@ -13,28 +13,28 @@ class Command(BaseCommand):
         # Crear clientes
         clientes_data = [
             {
-                'nombres': 'Juan',
-                'apellidos': 'Pérez',
-                'email': 'juan@example.com',
+                'nombres': 'Stefano',
+                'apellidos': 'Villalva',
+                'email': 'stefano@gmail.com',
                 'direccion': ciudad,
                 'ruc': '12345678901',
-                'password': 'contraseña_segura',
+                'password': '123',
             },
             {
-                'nombres': 'María',
-                'apellidos': 'González',
-                'email': 'maria@example.com',
+                'nombres': 'Erick',
+                'apellidos': 'Galindo',
+                'email': 'galindo@gmail.com',
                 'direccion': ciudad,
                 'ruc': '12345678902',
-                'password': 'contraseña_segura',
+                'password': '123',
             },
             {
-                'nombres': 'Carlos',
-                'apellidos': 'Fernández',
-                'email': 'carlos@example.com',
+                'nombres': 'Fabio',
+                'apellidos': 'Ochoa',
+                'email': 'ochoa@gmail.com',
                 'direccion': ciudad,
                 'ruc': '12345678903',
-                'password': 'contraseña_segura',
+                'password': '125',
             },
         ]
 

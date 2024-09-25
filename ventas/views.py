@@ -1,5 +1,1 @@
-from django.shortcuts import render
-from clientes.views import login_requerido
-
-
-
+from django.shortcuts import render, redirect

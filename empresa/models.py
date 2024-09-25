@@ -6,4 +6,4 @@ class Empleado(models.Model):
     dni = models.CharField(max_length=8, unique=True)    
     
     def __str__(self):
-        return {self.nombre, self.apellidos, self.dni}
+        return f"{self.nombre} {self.apellidos} ({self.dni})"  

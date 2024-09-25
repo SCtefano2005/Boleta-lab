@@ -31,8 +31,16 @@ def login_requerido(view_func):
         return view_func(request, *args, **kwargs)
     return _wrapped_view
 
+def logout(request):
+    if 'cliente_id' in request.session:
+        del request.session['cliente_id']  # Elimina el ID del cliente de la sesión
+        messages.success(request, "Has cerrado sesión correctamente.")
+    return redirect('login')  # Redirige a la página de inicio de sesión
+
+
 @login_requerido
 def home(request):
     cliente = Cliente.objects.get(id=request.session['cliente_id'])
     return render(request, 'home.html', {'cliente': cliente})
+
 
